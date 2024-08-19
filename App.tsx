@@ -10,6 +10,7 @@ import { useFonts } from "expo-font";
 import { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SearchNavigator from "./src/navigators/SearchNavigator";
+import { Ionicons } from "@expo/vector-icons";
 SplashScreen.preventAutoHideAsync();
 export default function App() {
   const navTheme = DefaultTheme;
@@ -31,18 +32,50 @@ export default function App() {
   }
 
   return (
-    <View style={styles.root}>
+    <>
       <StatusBar style="auto" />
       {!authenticated && <LoginScreen onPress={() => setAuthenticated(true)} />}
       {authenticated && (
         <NavigationContainer theme={navTheme}>
-          <BottomTabs.Navigator screenOptions={{ headerShown: false }}>
-            <BottomTabs.Screen component={MainNavigator} name="Main" />
-            <BottomTabs.Screen component={SearchNavigator} name="Search" />
+          <BottomTabs.Navigator
+            screenOptions={{
+              headerShown: false,
+              tabBarStyle: {
+                backgroundColor: "rgba(141, 153, 174, 1)",
+                padding: 10,
+                height: 72,
+              },
+              tabBarActiveTintColor: "rgba(43, 45, 66, 1)",
+              tabBarInactiveTintColor: "white",
+              tabBarLabelStyle: {
+                fontSize: 16,
+                fontFamily: "Poppins-regular",
+                fontWeight: "400",
+              },
+            }}
+          >
+            <BottomTabs.Screen
+              component={MainNavigator}
+              name="Home"
+              options={{
+                tabBarIcon: ({ color, size }) => (
+                  <Ionicons name="home" color={color} size={32} />
+                ),
+              }}
+            />
+            <BottomTabs.Screen
+              component={SearchNavigator}
+              name="Search"
+              options={{
+                tabBarIcon: ({ color, size }) => (
+                  <Ionicons name="search" color={color} size={32} />
+                ),
+              }}
+            />
           </BottomTabs.Navigator>
         </NavigationContainer>
       )}
-    </View>
+    </>
   );
 }
 

@@ -12,6 +12,7 @@ const Style = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 20,
+    backgroundColor: "green",
   },
 });
 export default SearchScreen;

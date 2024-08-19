@@ -1,14 +1,5 @@
-import {
-  View,
-  Text,
-  Button,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  Linking,
-} from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 import CustomButton from "../../utils/CustomButton";
-import { Link } from "@react-navigation/native";
 import InfoText from "../../components/login/Info";
 const LoginScreen: React.FC<{ onPress: () => void }> = ({ onPress }) => {
   return (
@@ -61,25 +52,6 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 32,
     height: "auto",
-  },
-  infoTextBox: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    marginTop: 24,
-    justifyContent: "space-between",
-  },
-  infoText: {
-    fontFamily: "Poppins-medium",
-    fontWeight: "400",
-    fontSize: 13,
-    textAlign: "center",
-    color: "white",
-  },
-  link: {
-    color: "rgba(43, 45, 66, 1)",
-    fontFamily: "Poppins-medium",
-    fontSize: 13,
-    textDecorationLine: "underline",
   },
 });
 export default LoginScreen;

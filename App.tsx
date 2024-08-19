@@ -4,7 +4,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { Button, StyleSheet, Text, View } from "react-native";
 import LoginScreen from "./src/screens/logIn/LoginScreen";
-import MainNavigator from "./src/navigators/MainNavigator";
+import HomeNavigator from "./src/navigators/HomeNavigator";
 import SearchScreen from "./src/screens/search/SearchScreen";
 import { useFonts } from "expo-font";
 import { useEffect, useState } from "react";
@@ -55,7 +55,7 @@ export default function App() {
             }}
           >
             <BottomTabs.Screen
-              component={MainNavigator}
+              component={HomeNavigator}
               name="Home"
               options={{
                 tabBarIcon: ({ color, size }) => (

@@ -10,7 +10,7 @@ import {
 
 import VideoBox from "./VideoBox";
 import { useEffect, useState } from "react";
-const API_KEY = "AIzaSyBc-o0Wc-B9O_F124nLrj0gVOQ04hmBxPo";
+const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 
 const CategoryBox: React.FC<{ title: string; keyword: string }> = ({
   title,

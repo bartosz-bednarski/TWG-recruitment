@@ -5,7 +5,6 @@ import { StatusBar } from "expo-status-bar";
 import { Button, StyleSheet, Text, View } from "react-native";
 import LoginScreen from "./src/screens/logIn/LoginScreen";
 import HomeNavigator from "./src/navigators/HomeNavigator";
-import SearchScreen from "./src/screens/search/SearchScreen";
 import { useFonts } from "expo-font";
 import { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -87,6 +86,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
-    fontFamily: "Poppins",
+    fontFamily: "Poppins-medium",
   },
 });

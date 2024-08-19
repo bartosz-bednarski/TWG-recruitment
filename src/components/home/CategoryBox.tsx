@@ -2,6 +2,7 @@ import { Link } from "@react-navigation/native";
 import {
   Button,
   Image,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -12,15 +13,16 @@ import VideoBox from "./VideoBox";
 import { useEffect, useState } from "react";
 const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 
-const CategoryBox: React.FC<{ title: string; keyword: string }> = ({
-  title,
-  keyword,
-}) => {
+const CategoryBox: React.FC<{
+  title: string;
+  keyword: string;
+  navigation: any;
+}> = ({ title, keyword, navigation }) => {
   const [fetchedData, setFetchedData] = useState([]);
   useEffect(() => {
     const getVideos = async () => {
       const URL =
-        "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=" +
+        "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&type=video&q=" +
         keyword +
         "&key=" +
         API_KEY;
@@ -29,6 +31,7 @@ const CategoryBox: React.FC<{ title: string; keyword: string }> = ({
       });
       const data = await res.json();
       setFetchedData(data.items);
+      console.log(data.items);
     };
     getVideos();
   }, []);
@@ -37,9 +40,16 @@ const CategoryBox: React.FC<{ title: string; keyword: string }> = ({
     <View style={styles.container}>
       <View style={styles.headerBox}>
         <Text style={styles.header}>{title}</Text>
-        <Link to="/Search" style={styles.link}>
-          Show more
-        </Link>
+        <Pressable
+          onPress={() =>
+            navigation.navigate("Search", {
+              screen: "searchStack",
+              params: { keyword: keyword, title: title },
+            })
+          }
+        >
+          <Text style={styles.link}>Show more</Text>
+        </Pressable>
       </View>
       <ScrollView horizontal={true}>
         {fetchedData.map((item) => (

@@ -1,11 +1,19 @@
 import { Pressable, StyleSheet, TextInput, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-const SearchBar: React.FC = () => {
+const SearchBar: React.FC<{ navigation: any }> = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Pressable style={styles.searchBarBox}>
+      <Pressable
+        style={styles.searchBarBox}
+        onPress={() =>
+          navigation.navigate("Search", {
+            screen: "searchStack",
+            params: { focus: true },
+          })
+        }
+      >
         <Ionicons name="search-outline" color="rgba(43, 45, 66, 1)" size={24} />
-        <TextInput placeholder="Search videos" />
+        <TextInput placeholder="Search videos" editable={false} />
       </Pressable>
       <Ionicons name="settings-outline" color="rgba(43, 45, 66, 1)" size={26} />
     </View>

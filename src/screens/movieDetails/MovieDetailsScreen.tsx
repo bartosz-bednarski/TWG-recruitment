@@ -1,10 +1,10 @@
 import { Text, View, StyleSheet, Image, Pressable } from "react-native";
 import { useEffect, useState } from "react";
-import { VideoDetailsType } from "../../../types/movieDetails";
-import ChannelBox from "../../../components/movieDetails/ChannelBox";
-import ButtonsBox from "../../../components/movieDetails/ButtonsBox";
-import DetailsBox from "../../../components/movieDetails/details/DetailsBox";
-import NotesBox from "../../../components/movieDetails/notes/NotesBox";
+import { VideoDetailsType } from "../../types/movieDetails";
+import ChannelBox from "../../components/movieDetails/ChannelBox";
+import ButtonsBox from "../../components/movieDetails/ButtonsBox";
+import DetailsBox from "../../components/movieDetails/details/DetailsBox";
+import NotesBox from "../../components/movieDetails/notes/NotesBox";
 const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 const MovieDetailsScreen: React.FC<{ route: any }> = ({ route }) => {
   const [videoData, setVideoData] = useState<null | VideoDetailsType>(null);

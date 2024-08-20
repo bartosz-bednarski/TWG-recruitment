@@ -15,7 +15,13 @@ const SearchBar: React.FC<{ navigation: any }> = ({ navigation }) => {
         <Ionicons name="search-outline" color="rgba(43, 45, 66, 1)" size={24} />
         <TextInput placeholder="Search videos" editable={false} />
       </Pressable>
-      <Ionicons name="settings-outline" color="rgba(43, 45, 66, 1)" size={26} />
+      <Pressable onPress={() => navigation.navigate("Settings")}>
+        <Ionicons
+          name="settings-outline"
+          color="rgba(43, 45, 66, 1)"
+          size={26}
+        />
+      </Pressable>
     </View>
   );
 };

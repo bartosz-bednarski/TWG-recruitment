@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-const CustomButton: React.FC<{ onPress: () => void; title: string }> = ({
+const CustomButton: React.FC<{ onPress: any; title: string }> = ({
   onPress,
   title,
 }) => {

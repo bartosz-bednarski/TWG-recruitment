@@ -1,10 +1,15 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
-const SortBy: React.FC = () => {
+const SortBy: React.FC<{ onPress: () => void; sortBy: string }> = ({
+  onPress,
+  sortBy,
+}) => {
   return (
-    <Pressable style={styles.rowBox}>
+    <Pressable style={styles.rowBox} onPress={onPress}>
       <Text style={styles.text}>Sort by:</Text>
-      <Text style={[styles.text, { fontWeight: "600" }]}>Most popular</Text>
+      <Text style={[styles.text, { fontWeight: "700", marginLeft: 5 }]}>
+        {sortBy}
+      </Text>
     </Pressable>
   );
 };

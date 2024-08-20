@@ -4,12 +4,14 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { Button, StyleSheet, Text, View } from "react-native";
 import LoginScreen from "./src/screens/logIn/LoginScreen";
-import HomeNavigator from "./src/navigators/HomeNavigator";
 import { useFonts } from "expo-font";
 import { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import SearchNavigator from "./src/navigators/SearchNavigator";
+import SearchNavigator from "./src/navigators/BottomTabsNavigator";
 import { Ionicons } from "@expo/vector-icons";
+import MovieDetailsScreen from "./src/screens/search/movieDetails/MovieDetailsScreen";
+import SearchScreen from "./src/screens/search/SearchScreen";
+import BottomTabsNavigator from "./src/navigators/BottomTabsNavigator";
 SplashScreen.preventAutoHideAsync();
 export default function App() {
   const navTheme = DefaultTheme;
@@ -35,44 +37,60 @@ export default function App() {
       <StatusBar style="auto" />
       {!authenticated && <LoginScreen onPress={() => setAuthenticated(true)} />}
       {authenticated && (
-        <NavigationContainer theme={navTheme}>
-          <BottomTabs.Navigator
-            screenOptions={{
-              headerShown: false,
-              tabBarStyle: {
-                backgroundColor: "rgba(141, 153, 174, 1)",
-                padding: 10,
-                height: 72,
-              },
-              tabBarActiveTintColor: "rgba(43, 45, 66, 1)",
-              tabBarInactiveTintColor: "white",
-              tabBarLabelStyle: {
-                fontSize: 16,
-                fontFamily: "Poppins-regular",
-                fontWeight: "400",
-              },
-            }}
-          >
-            <BottomTabs.Screen
-              component={HomeNavigator}
-              name="Home"
-              options={{
-                tabBarIcon: ({ color, size }) => (
-                  <Ionicons name="home" color={color} size={32} />
-                ),
+        <>
+          <NavigationContainer theme={navTheme}>
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
+              <Stack.Screen
+                component={BottomTabsNavigator}
+                name="bottomTabsNav"
+              />
+              <Stack.Screen
+                component={MovieDetailsScreen}
+                name="movieDetails"
+              />
+            </Stack.Navigator>
+            {/* <BottomTabs.Navigator
+              screenOptions={{
+                headerShown: false,
+                tabBarStyle: {
+                  backgroundColor: "rgba(141, 153, 174, 1)",
+                  padding: 10,
+                  height: 72,
+                },
+                tabBarActiveTintColor: "rgba(43, 45, 66, 1)",
+                tabBarInactiveTintColor: "white",
+                tabBarLabelStyle: {
+                  fontSize: 16,
+                  fontFamily: "Poppins-regular",
+                  fontWeight: "400",
+                },
               }}
-            />
-            <BottomTabs.Screen
-              component={SearchNavigator}
-              name="Search"
-              options={{
-                tabBarIcon: ({ color, size }) => (
-                  <Ionicons name="search" color={color} size={32} />
-                ),
-              }}
-            />
-          </BottomTabs.Navigator>
-        </NavigationContainer>
+            >
+              <BottomTabs.Screen
+                component={HomeNavigator}
+                name="Home"
+                options={{
+                  tabBarIcon: ({ color, size }) => (
+                    <Ionicons name="home" color={color} size={32} />
+                  ),
+                }}
+              />
+              <BottomTabs.Screen
+                component={SearchScreen}
+                name="Search"
+                options={(route) => ({
+                  tabBarIcon: ({ color, size }) => (
+                    <Ionicons name="search" color={color} size={32} />
+                  ),
+                  tabBarStyle: {
+                    display:
+                      route.route.path === "movieDetails" ? "none" : "flex",
+                  },
+                })}
+              />
+            </BottomTabs.Navigator> */}
+          </NavigationContainer>
+        </>
       )}
     </>
   );

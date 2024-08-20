@@ -6,11 +6,12 @@ const VideoBox: React.FC<{
   image: string;
   channel: string;
   navigation: any;
-}> = ({ title, date, image, channel, navigation }) => {
+  id: string;
+}> = ({ title, date, image, channel, navigation, id }) => {
   return (
     <Pressable
       style={styles.container}
-      onPress={() => navigation.navigate("movieDetails")}
+      onPress={() => navigation.navigate("movieDetails", { id })}
     >
       <Image
         style={styles.coverImage}

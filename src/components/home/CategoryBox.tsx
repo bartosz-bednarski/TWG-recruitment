@@ -1,13 +1,4 @@
-import { Link } from "@react-navigation/native";
-import {
-  Button,
-  Image,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import VideoBox from "./VideoBox";
 import { useEffect, useState } from "react";
@@ -30,8 +21,8 @@ const CategoryBox: React.FC<{
         method: "GET",
       });
       const data = await res.json();
+      console.log(data);
       setFetchedData(data.items);
-      console.log(data.items);
     };
     getVideos();
   }, []);
@@ -42,8 +33,8 @@ const CategoryBox: React.FC<{
         <Text style={styles.header}>{title}</Text>
         <Pressable
           onPress={() =>
-            navigation.navigate("Search", {
-              screen: "searchStack",
+            navigation.navigate("bottomTabsNav", {
+              screen: "Search",
               params: { keyword: keyword, title: title },
             })
           }
@@ -55,14 +46,13 @@ const CategoryBox: React.FC<{
         {fetchedData.map((item) => (
           <VideoBox
             key={item.etag}
+            id={item.id.videoId}
             title={item.snippet.title}
             date={item.snippet.publishTime}
             image={item.snippet.thumbnails.medium.url}
           />
         ))}
       </ScrollView>
-
-      {/* <Button onPress={() => console.log(fetchedData)} title="Click" /> */}
     </View>
   );
 };

@@ -1,10 +1,11 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 
-const VideoBox: React.FC<{ title: string; date: string; image: string }> = ({
-  title,
-  date,
-  image,
-}) => {
+const VideoBox: React.FC<{
+  title: string;
+  date: string;
+  image: string;
+  id: string;
+}> = ({ title, date, image, id }) => {
   return (
     <View style={styles.container}>
       <Image

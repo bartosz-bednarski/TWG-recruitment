@@ -74,6 +74,7 @@ const SearchScreen: React.FC<{ navigation: any; route: any }> = ({
                 date={item.snippet.publishTime}
                 image={item.snippet.thumbnails.high.url}
                 channel={item.snippet.channelTitle}
+                id={item.id.videoId}
               />
             ))}
           </ScrollView>

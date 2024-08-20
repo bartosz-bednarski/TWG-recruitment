@@ -1,14 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SearchScreen from "../screens/search/SearchScreen";
-import MovieDetailsScreen from "../screens/search/movieDetails/MovieDetailsScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/home/HomeScreen";
 import { Ionicons } from "@expo/vector-icons";
 const BottomTabsNavigator: React.FC = () => {
-  const Stack = createNativeStackNavigator();
   const BottomTabs = createBottomTabNavigator();
   return (
-    // <Stack.Navigator screenOptions={{ headerShown: false }}>
     <BottomTabs.Navigator
       screenOptions={{
         headerShown: false,
@@ -47,9 +44,4 @@ const BottomTabsNavigator: React.FC = () => {
     </BottomTabs.Navigator>
   );
 };
-{
-  /* <Stack.Screen component={SearchScreen} name="searchStack" />
-      <Stack.Screen component={MovieDetailsScreen} name="movieDetails" />
-    </Stack.Navigator> */
-}
 export default BottomTabsNavigator;

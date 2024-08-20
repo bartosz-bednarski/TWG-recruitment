@@ -1,9 +1,8 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-
 import VideoBox from "./VideoBox";
 import { useEffect, useState } from "react";
-const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 
+const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 const CategoryBox: React.FC<{
   title: string;
   keyword: string;
@@ -21,7 +20,6 @@ const CategoryBox: React.FC<{
         method: "GET",
       });
       const data = await res.json();
-      console.log(data);
       setFetchedData(data.items);
     };
     getVideos();
@@ -50,6 +48,7 @@ const CategoryBox: React.FC<{
             title={item.snippet.title}
             date={item.snippet.publishTime}
             image={item.snippet.thumbnails.medium.url}
+            navigation={navigation}
           />
         ))}
       </ScrollView>

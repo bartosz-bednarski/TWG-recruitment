@@ -1,14 +1,16 @@
 import { Text, View, StyleSheet, Image, Pressable } from "react-native";
-import Video from "react-native-video";
-import VideoPlayer from "../../../components/movieDetails/VideoPlayer";
 import { useEffect, useState } from "react";
 import { VideoDetailsType } from "../../../types/movieDetails";
 import ChannelBox from "../../../components/movieDetails/ChannelBox";
 import ButtonsBox from "../../../components/movieDetails/ButtonsBox";
 import DetailsBox from "../../../components/movieDetails/details/DetailsBox";
+import NotesBox from "../../../components/movieDetails/notes/NotesBox";
 const API_KEY = process.env.EXPO_PUBLIC_API_KEY;
 const MovieDetailsScreen: React.FC<{ route: any }> = ({ route }) => {
   const [videoData, setVideoData] = useState<null | VideoDetailsType>(null);
+  const [selectedView, setSelectedView] = useState<"details" | "notes">(
+    "details"
+  );
   useEffect(() => {
     const getVideo = async () => {
       const URL =
@@ -45,8 +47,18 @@ const MovieDetailsScreen: React.FC<{ route: any }> = ({ route }) => {
           />
           <Text style={styles.title}>{videoData.title}</Text>
           <ChannelBox channel={videoData.channel} />
-          <ButtonsBox />
-          <DetailsBox description={videoData.description} />
+          <ButtonsBox
+            onPress={(view: "details" | "notes") => setSelectedView(view)}
+            selectedView={selectedView}
+          />
+          {selectedView === "details" && (
+            <DetailsBox
+              description={videoData.description}
+              views={videoData.views}
+              likes={videoData.likes}
+            />
+          )}
+          {selectedView === "notes" && <NotesBox videoId={route.params.id} />}
         </>
       )}
     </View>
@@ -58,7 +70,6 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     backgroundColor: "white",
     width: "100%",
-    // paddingHorizontal: 24,
   },
   title: {
     fontSize: 18,

@@ -1,11 +1,17 @@
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import Desciption from "./Description";
+import StatisticsBox from "./StatisticsBox";
 
-const DetailsBox: React.FC<{ description: string }> = ({ description }) => {
+const DetailsBox: React.FC<{
+  description: string;
+  views: string;
+  likes: string;
+}> = ({ description, views, likes }) => {
   return (
-    <View style={styles.box}>
+    <ScrollView style={styles.box}>
       <Desciption description={description} />
-    </View>
+      <StatisticsBox views={views} likes={likes} />
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({

@@ -28,7 +28,6 @@ const SearchScreen: React.FC<{ navigation: any; route: any }> = ({
       route.params.title = undefined;
     }
     if (textInput !== "") {
-      console.log(sortBy.order);
       const getVideos = async () => {
         const URL =
           "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5" +
@@ -49,8 +48,6 @@ const SearchScreen: React.FC<{ navigation: any; route: any }> = ({
     }
   }, [textInput, route, sortBy]);
 
-  console.log(textInput);
-  console.log(route.params?.focus ? true : false);
   return (
     <View style={styles.container}>
       <Modal animationType="slide" transparent={true} visible={modalVisible}>

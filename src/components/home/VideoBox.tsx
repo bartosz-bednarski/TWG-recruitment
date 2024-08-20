@@ -1,13 +1,17 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 const VideoBox: React.FC<{
   title: string;
   date: string;
   image: string;
   id: string;
-}> = ({ title, date, image, id }) => {
+  navigation: any;
+}> = ({ title, date, image, id, navigation }) => {
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() => navigation.navigate("movieDetails", { id })}
+    >
       <Image
         style={styles.coverImage}
         source={{
@@ -18,7 +22,7 @@ const VideoBox: React.FC<{
       <Text style={styles.date}>
         {date.slice(0, date.indexOf("T")).replaceAll("-", ".")}
       </Text>
-    </View>
+    </Pressable>
   );
 };
 
